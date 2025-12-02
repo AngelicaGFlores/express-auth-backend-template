@@ -1,5 +1,10 @@
 const express = require("express");
-const { getAllUsers, getUserById, loginUser, registerUser } = require("../controllers/userController");
+const {
+	getAllUsers,
+	getUserById,
+	registerUser,
+	loginUser,
+} = require("../controllers/userController");
 
 // Router
 const userRouter = express.Router();
@@ -14,11 +19,21 @@ userRouter.get("/", getAllUsers);
  */
 userRouter.get("/:id", getUserById);
 
-//register
-userRouter.post('/register',registerUser)
+/**
+ * Post /api/user/register
+ */
+userRouter.post("/register", registerUser);
 
-//login 
-userRouter.post('/login',loginUser)
+/**
+ * POST /api/user/login
+ */
 
+userRouter.post("/login", loginUser);
+
+/**
+ * Create a POST route (e.g., /api/users/register).
+ */
+
+// userRouter.post("/register",)
 
 module.exports = userRouter;

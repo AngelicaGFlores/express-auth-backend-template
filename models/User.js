@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
 	},
 });
 
+//dont use next() anymore
 // Set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {
 	if (this.isNew || this.isModified("password")) {
@@ -27,7 +28,7 @@ userSchema.pre("save", async function (next) {
 		this.password = await bcrypt.hash(this.password, saltRounds);
 	}
 
-	next();
+	//   next();
 });
 
 // Compare the incoming password with the hashed password
