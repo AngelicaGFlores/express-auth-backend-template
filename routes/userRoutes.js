@@ -6,13 +6,15 @@ const {
 	loginUser,
 } = require("../controllers/userController");
 
+const { authMiddleware } = require("../middlewares/auth");
+
 // Router
 const userRouter = express.Router();
 
 /**
  * GET /api/user/
  */
-userRouter.get("/", getAllUsers);
+userRouter.get("/", authMiddleware, getAllUsers);
 
 /**
  * GET /api/user/:id
@@ -20,20 +22,13 @@ userRouter.get("/", getAllUsers);
 userRouter.get("/:id", getUserById);
 
 /**
- * Post /api/user/register
+ * POST /api/user/register
  */
 userRouter.post("/register", registerUser);
 
 /**
  * POST /api/user/login
  */
-
 userRouter.post("/login", loginUser);
-
-/**
- * Create a POST route (e.g., /api/users/register).
- */
-
-// userRouter.post("/register",)
 
 module.exports = userRouter;
